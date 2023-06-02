@@ -1,35 +1,34 @@
 package com.jhonatan.examplemotion
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
+import com.airbnb.lottie.LottieAnimationView
 
-class ThreeActivity : AppCompatActivity() {
+class FiveActivity : AppCompatActivity() {
 
     lateinit var buttonNext: Button
-    lateinit var buttonPrevious : Button
-    lateinit var cards : MotionLayout
+    lateinit var buttonPrevious: Button
+    lateinit var cards: MotionLayout
+
+    lateinit var animationView: LottieAnimationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.three_animation_activity)
+        setContentView(R.layout.five_animation_activity)
 
 
         buttonNext = findViewById(R.id.next)
         buttonPrevious = findViewById(R.id.previous)
         cards = findViewById(R.id.cards)
+        animationView = findViewById(R.id.animationView)
+        animationView.setAnimation("animation_1.json")
 
-        buttonNext.setOnClickListener{
+        buttonNext.setOnClickListener {
             starAnimationCard()
         }
-        buttonPrevious.setOnClickListener{
+        buttonPrevious.setOnClickListener {
             onBackAnimationCard()
-        }
-
-        val nextAnimation = this.findViewById<Button>(R.id.nextAnimation)
-        nextAnimation.setOnClickListener {
-            startActivity(Intent(this@ThreeActivity, FiveActivity::class.java))
         }
     }
 
@@ -41,6 +40,7 @@ class ThreeActivity : AppCompatActivity() {
                 cards.setTransition(R.id.medium_to_start)
                 cards.transitionToEnd()
                 isTransactionPreviousCard = false
+                animationView.setAnimation("animation_2.json")
             } else {
                 cards.setTransition(R.id.init)
             }
@@ -54,6 +54,7 @@ class ThreeActivity : AppCompatActivity() {
             if (isTransactionNextCard) {
                 cards.setTransition(R.id.medium_to_end)
                 cards.transitionToEnd()
+                animationView.playAnimation()
                 isTransactionNextCard = false
             }
         }

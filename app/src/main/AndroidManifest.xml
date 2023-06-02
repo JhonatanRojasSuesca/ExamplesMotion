@@ -23,6 +23,7 @@
         <activity android:name=".SecondActivity"/>
         <activity android:name=".ThreeActivity"/>
         <activity android:name=".FourActivity"/>
+        <activity android:name=".FiveActivity"/>
     </application>
 
 </manifest>
